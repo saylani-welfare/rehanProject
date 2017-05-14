@@ -97,9 +97,13 @@ class AdminLogin extends React.Component {
             btnSpan: {
                 marginLeft: 5
             },
+            container: {
+                backgroundImage:  'url(' + require('../../images/bg.jpg') + ')',
+                height: '100vh'
+            }
         };
         return (
-            <div>
+            <div style={styles.container}>
 
                 <div style={styles.loginContainer}>
 
