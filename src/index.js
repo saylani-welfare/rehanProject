@@ -17,7 +17,10 @@ import {
     Settings,
     Customers,
     Vendors,
-    Quality
+    Quality,
+    SalesPerson,
+    AddEntry,
+    AddCostumer
 } from './containers';
 
 
@@ -36,6 +39,9 @@ ReactDOM.render(
                     <Route path="/vendors" component={Vendors}/>
                     <Route path="/quality" component={Quality}/>*/}
                     <Route path="/settings" component={Settings} />
+                    <Route path="/salesperson" component={SalesPerson} />
+                    <Route path="/addentry" component={AddEntry} />
+                    <Route path="/addcostumer" component={AddCostumer} />
                 </Route>
                 {/*<Route path="/" component={ManagerLogin}/>
                 <Route path="/managerpanel" component={ManagerPanel}>

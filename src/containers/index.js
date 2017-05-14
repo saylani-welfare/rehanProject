@@ -7,7 +7,9 @@ import Settings from './Settings/Settings';
 import Customers from './Customers/Customers';
 import Vendors from './Vendors/Vendors';
 import Quality from './Quality/Quality';
-
+import SalesPerson from './SalesPerson/SalesPerson';
+import AddCostumer from './AddCostumer/AddCostumer';
+import AddEntry from './AddEntry/AddEntry';
 
 export {
     Login,   
@@ -17,5 +19,8 @@ export {
     Settings,
     Customers,
     Vendors,
-    Quality
+    Quality,
+    SalesPerson,
+    AddCostumer,
+    AddEntry
 } ;

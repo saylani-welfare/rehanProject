@@ -42,7 +42,6 @@ class AdminLogin extends React.Component {
     render() {
         const styles = {
             loginContainer: {
-                
                 minWidth: 320,
                 maxWidth: 400,
                 height: 'auto',
@@ -102,7 +101,6 @@ class AdminLogin extends React.Component {
                 backgroundImage:  'url(' + require('../../images/bg.jpg') + ')',
                 height: '100vh'
             }
-
         };
         return (
             <div style={styles.container}>
