@@ -14,6 +14,8 @@ import {
     AdminLogin,
     AdminPanel,
     AdminDashboard,
+    ManagerPanel,
+    ManagerDashboard,
     Settings,
     Customers,
     Vendors,
@@ -27,24 +29,22 @@ ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider muiTheme={themeDefault}>
             <Router history={browserHistory}>
-                <Route path="/" component={Login} />
+                <Route path="/" component={Login}/>
+                <Route path="/managerpanel" component={ManagerPanel}>
+                    <IndexRoute component={ManagerDashboard}/>
+                    <Route path="/customers" component={Customers}/>
+                    <Route path="/vendors" component={Vendors}/>
+                    <Route path="/quality" component={Quality}/>
+                </Route>   
                 <Route path="/admin" component={AdminLogin} />
                 <Route path="/adminpanel" component={AdminPanel}>
                     <IndexRoute component={AdminDashboard} />
-                    {/*<Route path="/managerdashboard" component={ManagerDahsboard}/>*/}
-                    {/*<Route path="/customers" component={Customers}/>
+                    <Route path="/managerdashboard" component={ManagerDashboard}/>
+                    <Route path="/customers" component={Customers}/>
                     <Route path="/vendors" component={Vendors}/>
-                    <Route path="/quality" component={Quality}/>*/}
+                    <Route path="/quality" component={Quality}/>
                     <Route path="/settings" component={Settings} />
-                </Route>
-                {/*<Route path="/" component={ManagerLogin}/>
-                <Route path="/managerpanel" component={ManagerPanel}>
-                    <IndexRoute component={ManagerDahsboard}/>
-                    <Route path="/managercustomers" component={ManagerCustomers}/>
-                    <Route path="/managervendors" component={ManagerVendors}/>
-                    <Route path="/managerquality" component={ManagerQuality}/>
-                    <Route path="/managersettings" component={ManagerSettings}/>
-                </Route>    */}
+                </Route> 
             </Router>
         </MuiThemeProvider>
     </Provider>,

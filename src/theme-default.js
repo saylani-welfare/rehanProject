@@ -5,12 +5,12 @@ const themeDefault = getMuiTheme({
   palette: {
   },
   appBar: {
-    height: 57,
+    height: 67,
     color: blue600
   },
   drawer: {
     width: 230,
-    color: grey900
+    color: "#fff"
   },
   raisedButton: {
     primaryColor: blue600,

@@ -5,6 +5,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Menu from 'material-ui/svg-icons/navigation/menu';
+import FontIcon from 'material-ui/FontIcon';
 import ViewModule from 'material-ui/svg-icons/action/view-module';
 import {white} from 'material-ui/styles/colors';
 
