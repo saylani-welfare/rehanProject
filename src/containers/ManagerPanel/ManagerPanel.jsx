@@ -5,10 +5,9 @@ import withWidth, { LARGE, SMALL } from 'material-ui/utils/withWidth';
 
 
 import {Header, LeftDrawer} from '../../components';
-import adminImg from '../../images/admin.jpg';
+import managerImg from '../../images/manager.jpg';
 
-
-class AdminPanel extends React.Component {
+class ManagerPanel extends React.Component {
 
     constructor(props) {
         super(props);
@@ -44,8 +43,10 @@ class AdminPanel extends React.Component {
         };
 
         const menus = [
-            { text: 'DashBoard', icon: <Assessment />, link: '/adminpanel' },
-            { text: 'Settings', icon: <Settings/>, link: '/settings'}
+            { text: 'DashBoard', icon: <Assessment />, link: '/managerpanel'},
+            { text: 'Customers', icon: <Assessment />, link: '/customers' },
+            { text: 'Vendors', icon: <Assessment />, link: '/vendors' },
+            { text: 'Quality', icon: <Assessment />, link: '/quality' }
         ]
 
         return (
@@ -55,9 +56,10 @@ class AdminPanel extends React.Component {
 
                     <LeftDrawer navDrawerOpen={navDrawerOpen}
                         menus={menus}
-                        username="Rehan Adamjee"
-                        header="Admin Panel"
-                        avatar={adminImg}/>
+                        username="Mnager" 
+                        header="Manager Panel"
+                        avatar={managerImg}
+                        />
 
                     <div style={styles.container}>
                         {this.props.children}
@@ -67,9 +69,9 @@ class AdminPanel extends React.Component {
     }
 }
 
-AdminPanel.propTypes = {
+ManagerPanel.propTypes = {
     children: PropTypes.element,
     width: PropTypes.number
 };
 
-export default withWidth()(AdminPanel);
+export default withWidth()(ManagerPanel);

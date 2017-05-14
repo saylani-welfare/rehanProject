@@ -5,7 +5,6 @@ import {white, blue600} from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import {Link} from 'react-router';
 import Avatar from 'material-ui/Avatar';
-import adminImg from '../../images/admin.jpg';
 
 const LeftDrawer = (props) => {
   let { navDrawerOpen } = props;
@@ -22,15 +21,13 @@ const LeftDrawer = (props) => {
       height: 56,
     },
     menuItem: {
-      color: white,
+      color: "black",
       fontSize: 14,
       paddingTop: 10
     },
     avatar: {
       div: {
-        padding: '15px 0 20px 15px',
-        backgroundImage:  'url(' + require('../../images/avatarBg.png') + ')',
-        height: 45
+        padding: '15px 0px 20px 15px',
       },
       icon: {
         float: 'left',
@@ -41,7 +38,7 @@ const LeftDrawer = (props) => {
       span: {
         paddingTop: 12,
         display: 'block',
-        color: 'white',
+        color: 'black',
         fontWeight: 300,
         textShadow: '1px 1px #444'
       }
@@ -53,10 +50,10 @@ const LeftDrawer = (props) => {
       docked={true}
       open={navDrawerOpen}>
         <div style={styles.logo}>
-          Material Admin
+         {props.header}
         </div>
         <div style={styles.avatar.div}>
-          <Avatar src={adminImg}
+          <Avatar src={props.avatar}
                   size={50}
                   style={styles.avatar.icon}/>
           <span style={styles.avatar.span}>{props.username}</span>
@@ -80,6 +77,8 @@ LeftDrawer.propTypes = {
   navDrawerOpen: PropTypes.bool,
   menus: PropTypes.array,
   username: PropTypes.string,
+  header: PropTypes.string,
+  avatar: PropTypes.string
 };
 
 export default LeftDrawer;

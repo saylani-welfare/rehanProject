@@ -1,24 +1,24 @@
 import React, {PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
-import {white, pink600, pink500} from 'material-ui/styles/colors';
+import {white, blue400, blue600} from 'material-ui/styles/colors';
 import {BarChart, Bar, ResponsiveContainer, XAxis} from 'recharts';
 
 const MonthlySales = (props) => {
 
   const styles = {
     paper: {
-      backgroundColor: pink600,
-      height: 150
+      backgroundColor: blue600,
+      height: 300
     },
     div: {
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '95%',
-      height: 85
+      height: 230
     },
     header: {
       color: white,
-      backgroundColor: pink500,
+      backgroundColor: blue600,
       padding: 10
     },
     title: {
@@ -34,7 +34,7 @@ const MonthlySales = (props) => {
       <div style={styles.div}>
         <ResponsiveContainer>
           <BarChart data={props.data} >
-            <Bar dataKey="uv" fill={pink500}/>
+            <Bar dataKey="uv" fill={blue400}/>
             <XAxis dataKey="name" stroke="none" tick={{fill: white}}/>
           </BarChart>
         </ResponsiveContainer>

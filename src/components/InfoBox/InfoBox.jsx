@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
-import {white, grey800} from 'material-ui/styles/colors';
+import {white, grey800, blue600} from 'material-ui/styles/colors';
 import {typography} from 'material-ui/styles';
 
 class InfoBox extends React.Component {
@@ -30,7 +30,7 @@ class InfoBox extends React.Component {
         height: 90,
         width: 90,
         textAlign: 'center',
-        backgroundColor: color
+        backgroundColor: blue600
       },
       icon: {
         height: 48,
