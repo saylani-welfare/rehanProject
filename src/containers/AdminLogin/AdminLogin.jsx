@@ -135,7 +135,6 @@ class AdminLogin extends React.Component {
                                     style={styles.loginBtn}
                                     onTouchTap={this.handleSubmit}
                                 />
-                                =
                             </div>
                         </form>
                     </Paper>

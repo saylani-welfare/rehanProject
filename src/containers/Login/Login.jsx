@@ -1,15 +1,12 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import Checkbox from 'material-ui/Checkbox';
-import { grey500, white } from 'material-ui/styles/colors';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
-import Help from 'material-ui/svg-icons/action/help';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import { grey500, blue600 } from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
-import { Link } from 'react-router';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import AuthMiddleware from '../../store/middlewares/authMiddleware.js';
 
 function mapStateToProps(state) {
@@ -28,6 +25,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isFormActive: false,
+            loginAs: null,
             id: null,
             password: null
         }
@@ -37,10 +36,31 @@ class Login extends React.Component {
         const { id, password } = this.state;
         this.props.signIn(id, password);
     }
-
+    loginAsManager(){
+        this.changeStep();
+        setTimeout(() => this.refs.inputId.focus(), 100);
+        this.setState({loginAs: "Manager"});
+    }
+    loginAsSailsPerson(){
+        this.changeStep();
+        setTimeout(() => this.refs.inputId.focus(), 100);
+        this.setState({loginAs: "Sailsperson"});
+    }
+    changeStep(){
+        this.setState({isFormActive: !this.state.isFormActive});
+    }
+    stepBack(){
+        this.changeStep();
+        this.setState({loginAs: null});
+    }
 
     render() {
         const styles = {
+            h1: {
+                fontSize: '2em',
+                marginTop: 10,
+                marginBottom: 30
+            },
             loginContainer: {
                 minWidth: 320,
                 maxWidth: 400,
@@ -52,12 +72,9 @@ class Login extends React.Component {
                 margin: 'auto'
             },
             paper: {
+                textAlign: 'center',
                 padding: 20,
                 overflow: 'auto'
-            },
-            buttonsDiv: {
-                textAlign: 'center',
-                padding: 10
             },
             flatButton: {
                 color: grey500
@@ -77,16 +94,22 @@ class Login extends React.Component {
                     fill: grey500
                 }
             },
-            loginBtn: {
-                float: 'right'
-            },
             btn: {
-                background: '#4f81e9',
-                color: white,
-                padding: 7,
-                borderRadius: 2,
-                margin: 2,
-                fontSize: 13
+                margin: 10
+            },
+            btnBack : {
+                color: blue600,
+                position: 'absolute',
+                left: 0,
+                top: 4
+            },
+            hide: {//animations when hiding buttons and showing form
+                opacity: 0,
+                display: 'none'
+            },
+            show: {//animations when hiding form and showing buttons
+                opacity: 1,
+                display: 'block'
             },
             btnFacebook: {
                 background: '#4f81e9'
@@ -103,68 +126,59 @@ class Login extends React.Component {
                 <div style={styles.loginContainer}>
 
                     <Paper style={styles.paper}>
-                    <h1>Manager Login</h1>
-                        <form>
-                            <TextField
-                                hintText="ID"
-                                floatingLabelText="ID"
-                                fullWidth={true}
-                                type="password"
-                                onChange={event => this.setState({id: event.target.value })}
-                            />
-                            <TextField
-                                hintText="Password"
-                                floatingLabelText="Password"
-                                fullWidth={true}
-                                type="password"
-                                onChange={event => this.setState({password: event.target.value })}                                
-                            />
-
+                        <h1 style={styles.h1}>Company Name</h1>
+                        <h2>
+                            Login {this.state.loginAs ? ' As '+ this.state.loginAs : null}
+                        </h2>
+                        {/*Login buttons (step 1)*/}
+                        <div className="loginStep" style={!this.state.isFormActive ?  styles.show : styles.hide}>
                             <div>
-                                {/*<Checkbox
-                                    label="Remember me"
-                                    style={styles.checkRemember.style}
-                                    labelStyle={styles.checkRemember.labelStyle}
-                                    iconStyle={styles.checkRemember.iconStyle}
-                                />*/}
-
-                                
+                                <RaisedButton label="As Manager"
+                                primary={true}
+                                style={styles.btn}
+                                onTouchTap={() => this.loginAsManager()}
+                                />
+                            </div>
+                            <h2>OR</h2>
+                            <div>
+                                <RaisedButton label="As SalesPerson"
+                                    primary={true}
+                                    style={styles.btn}
+                                    onTouchTap={() => this.loginAsSailsPerson()}
+                                />
+                            </div>
+                        </div>
+                        {/*Login form (step 2)*/}
+                        <div className="loginStep" style={this.state.isFormActive ? styles.show : styles.hide}>
+                            <form>
+                                <TextField
+                                    hintText="ID"
+                                    ref="inputId"
+                                    floatingLabelText="ID"
+                                    fullWidth={true}
+                                    type="text"
+                                    onChange={event => this.setState({ id: event.target.value })}
+                                />
+                                <TextField
+                                    hintText="Password"
+                                    floatingLabelText="Password"
+                                    fullWidth={true}
+                                    type="password"
+                                    onChange={event => this.setState({ password: event.target.value })}
+                                />
+                                <div style={{position: 'relative'}}>
+                                    <IconButton style={styles.btnBack} touch={true} onTouchTap={() => {this.stepBack()}}>
+                                        <ArrowBack />
+                                    </IconButton>
                                     <RaisedButton label="Login"
                                         primary={true}
-                                        style={styles.loginBtn} 
+                                        style={styles.btn}
                                         onTouchTap={this.handleSubmit}
-                                        />
-                               =
-                            </div>
-                        </form>
+                                    />
+                                </div>
+                            </form>
+                        </div>
                     </Paper>
-
-                    {/*<div style={styles.buttonsDiv}>
-                        <FlatButton
-                            label="Register"
-                            href="/"
-                            style={styles.flatButton}
-                            icon={<PersonAdd />}
-                        />
-
-                        <FlatButton
-                            label="Forgot Password?"
-                            href="/"
-                            style={styles.flatButton}
-                            icon={<Help />}
-                        />
-                    </div>
-
-                    <div style={styles.buttonsDiv}>
-                        <Link to="/" style={{ ...styles.btn, ...styles.btnFacebook }}>
-                            <i className="fa fa-facebook fa-lg" />
-                            <span style={styles.btnSpan}>Log in with Facebook</span>
-                        </Link>
-                        <Link to="/" style={{ ...styles.btn, ...styles.btnGoogle }}>
-                            <i className="fa fa-google-plus fa-lg" />
-                            <span style={styles.btnSpan}>Log in with Google</span>
-                        </Link>
-                    </div>*/}
                 </div>
             </div>
         );
